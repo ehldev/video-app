@@ -42,7 +42,10 @@ export default {
 
       try {
         stream = await navigator.mediaDevices.getUserMedia({
-          video: true,
+          video: {
+            width: 1920, // Ancho deseado
+            height: 1080, // Altura deseada
+          },
           audio: true,
         });
       } catch (error) {
@@ -50,7 +53,7 @@ export default {
       }
 
       // Mostrar en la pantalla
-      this.$refs.videoContainer.srcObject = stream
+      this.$refs.videoContainer.srcObject = stream;
 
       // Reiniciar los fragmentos grabados y configurar el mediaRecorder
       this.recordedChunks = [];
